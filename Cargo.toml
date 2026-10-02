@@ -1,0 +1,31 @@
+[package]
+name = "grep-alternative"
+version = "0.1.0"
+edition = "2021"
+description = "A parallel recursive grep with a line-safe whole-buffer regex engine, SIMD literal search, .gitignore support and binary detection."
+license = "MIT"
+
+[lib]
+name = "gx"
+
+[[bin]]
+name = "gx"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+ignore = "0.4"
+memchr = "2"
+memmap2 = "0.9"
+regex-automata = "0.4"
+regex-syntax = "0.8"
+
+[dev-dependencies]
+regex = "1"
+tempfile = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+debug = false
+panic = "abort"
